@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.gestion.medicale.entities.Utilisateur;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur,Long>{
-	@Query("select u from Utilisateur u where u.prenom like :x")
+	@Query("select u from Utilisateur u where u.prenomUtilisateur like :x")
 	public List<Utilisateur> utilisateursParMC(@Param("x")String mc);
 
 }

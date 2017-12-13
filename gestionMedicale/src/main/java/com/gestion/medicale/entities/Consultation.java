@@ -21,12 +21,15 @@ public class Consultation implements Serializable{
 	private Long codeCons;
 	private Date dateCons;
 	private double tensionArterielle;
-	private double temperateur;
+	private double temperature;
 	private double poids;
 	private String commentaireCons;
 	@ManyToOne
-	@JoinColumn(name="CODE_UTILISATEUR")
-	private Utilisateur utilisateur;
+	@JoinColumn(name="CODE_PATIENT")
+	private Utilisateur utilisateurPatient;
+	@ManyToOne
+	@JoinColumn(name="CODE_SOIGNANT")
+	private Utilisateur utilisateurSoignant;
 	@ManyToMany
 	@JoinTable(name="CONS_SIGNE")
 	private Collection<Signe> signes;
@@ -41,12 +44,12 @@ public class Consultation implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Consultation(Date dateCons, double tensionArterielle, double temperateur, double poids,
+	public Consultation(Date dateCons, double tensionArterielle, double ttemperature, double poids,
 			String commentaireCons) {
 		super();
 		this.dateCons = dateCons;
 		this.tensionArterielle = tensionArterielle;
-		this.temperateur = temperateur;
+		this.temperature = temperature;
 		this.poids = poids;
 		this.commentaireCons = commentaireCons;
 	}
@@ -68,11 +71,11 @@ public class Consultation implements Serializable{
 	public void setTensionArterielle(double tensionArterielle) {
 		this.tensionArterielle = tensionArterielle;
 	}
-	public double getTemperateur() {
-		return temperateur;
+	public double getTemperature() {
+		return temperature;
 	}
-	public void setTemperateur(double temperateur) {
-		this.temperateur = temperateur;
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
 	}
 	public double getPoids() {
 		return poids;
@@ -87,11 +90,17 @@ public class Consultation implements Serializable{
 		this.commentaireCons = commentaireCons;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public Utilisateur getUtilisateurPatient() {
+		return utilisateurPatient;
 	}
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setUtilisateurPatient(Utilisateur utilisateurPatient) {
+		this.utilisateurPatient = utilisateurPatient;
+	}
+	public Utilisateur getUtilisateurSoignant() {
+		return utilisateurSoignant;
+	}
+	public void setUtilisateurSoignant(Utilisateur utilisateurSoignant) {
+		this.utilisateurSoignant = utilisateurSoignant;
 	}
 	public Collection<Signe> getSignes() {
 		return signes;

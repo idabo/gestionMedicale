@@ -1,6 +1,7 @@
 package com.gestion.medicale.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
@@ -33,9 +34,10 @@ public class Utilisateur implements Serializable{
 	private String nomUtilisateur;
 	private String prenomUtilisateur;
 	private String telUtilisateur;
-	private String adresseUlisateur;
-	@OneToMany(mappedBy="utilisateur")
-	private List<Consultation> consultations;
+	private String adresseUtilisateur;
+	private Date dateNaissUtilisateur;
+	private String emailUtilisateur;
+	private String professionUtilisateur;
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -45,13 +47,18 @@ public class Utilisateur implements Serializable{
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 	}
+
 	public Utilisateur(String nomUtilisateur, String prenomUtilisateur, String telUtilisateur,
-			String adresseUlisateur) {
+			String adresseUtilisateur, Date dateNaissUtilisateur, String emailUtilisateur,
+			String professionUtilisateur) {
 		super();
 		this.nomUtilisateur = nomUtilisateur;
 		this.prenomUtilisateur = prenomUtilisateur;
 		this.telUtilisateur = telUtilisateur;
-		this.adresseUlisateur = adresseUlisateur;
+		this.adresseUtilisateur = adresseUtilisateur;
+		this.dateNaissUtilisateur = dateNaissUtilisateur;
+		this.emailUtilisateur = emailUtilisateur;
+		this.professionUtilisateur = professionUtilisateur;
 	}
 	public Long getCodeUtilisateur() {
 		return codeUtilisateur;
@@ -77,17 +84,30 @@ public class Utilisateur implements Serializable{
 	public void setTelUtilisateur(String telUtilisateur) {
 		this.telUtilisateur = telUtilisateur;
 	}
-	public String getAdresseUlisateur() {
-		return adresseUlisateur;
+
+	public String getAdresseUtilisateur() {
+		return adresseUtilisateur;
 	}
-	public void setAdresseUlisateur(String adresseUlisateur) {
-		this.adresseUlisateur = adresseUlisateur;
+	public void setAdresseUtilisateur(String adresseUtilisateur) {
+		this.adresseUtilisateur = adresseUtilisateur;
 	}
-	public List<Consultation> getConsultations() {
-		return consultations;
+	public Date getDateNaissUtilisateur() {
+		return dateNaissUtilisateur;
 	}
-	public void setConsultations(List<Consultation> consultations) {
-		this.consultations = consultations;
+	public void setDateNaissUtilisateur(Date dateNaissUtilisateur) {
+		this.dateNaissUtilisateur = dateNaissUtilisateur;
+	}
+	public String getEmailUtilisateur() {
+		return emailUtilisateur;
+	}
+	public void setEmailUtilisateur(String emailUtilisateur) {
+		this.emailUtilisateur = emailUtilisateur;
+	}
+	public String getProfessionUtilisateur() {
+		return professionUtilisateur;
+	}
+	public void setProfessionUtilisateur(String professionUtilisateur) {
+		this.professionUtilisateur = professionUtilisateur;
 	}
 	
 	
