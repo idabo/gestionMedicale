@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME,include=JsonTypeInfo.As.PROPERTY,property="type")
 @JsonSubTypes({
 	@Type(name="SO",value=Soignant.class),
-	@Type(name="PA",value=Patient.class)
+	@Type(name="SE",value=Secretaire.class),
+	@Type(name="PA",value=Patient.class),
+	@Type(name="FO",value=Fournisseur.class)
 })
 public class Utilisateur implements Serializable{
 	@Id
@@ -37,6 +39,8 @@ public class Utilisateur implements Serializable{
 	private String adresseUtilisateur;
 	private Date dateNaissUtilisateur;
 	private String emailUtilisateur;
+	private String loginUtilisateur;
+	private String passwordUtilisateur;
 	private String professionUtilisateur;
 	public Utilisateur() {
 		super();
@@ -108,6 +112,18 @@ public class Utilisateur implements Serializable{
 	}
 	public void setProfessionUtilisateur(String professionUtilisateur) {
 		this.professionUtilisateur = professionUtilisateur;
+	}
+	public String getLoginUtilisateur() {
+		return loginUtilisateur;
+	}
+	public void setLoginUtilisateur(String loginUtilisateur) {
+		this.loginUtilisateur = loginUtilisateur;
+	}
+	public String getPasswordUtilisateur() {
+		return passwordUtilisateur;
+	}
+	public void setPasswordUtilisateur(String passwordUtilisateur) {
+		this.passwordUtilisateur = passwordUtilisateur;
 	}
 	
 	

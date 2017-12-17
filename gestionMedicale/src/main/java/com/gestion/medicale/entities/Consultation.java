@@ -40,6 +40,9 @@ public class Consultation implements Serializable{
 	private List<ConsExamen> consExamens;
 	@OneToMany(mappedBy="consultation")
 	private List<ConsMedicament> consMedicament;
+	@ManyToOne
+	@JoinColumn(name="CODE_RV")
+	private RendezVous rendezVous;
 	public Consultation() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -125,6 +128,12 @@ public class Consultation implements Serializable{
 	}
 	public void setConsMedicament(List<ConsMedicament> consMedicament) {
 		this.consMedicament = consMedicament;
+	}
+	public RendezVous getRendezVous() {
+		return rendezVous;
+	}
+	public void setRendezVous(RendezVous rendezVous) {
+		this.rendezVous = rendezVous;
 	}
 	
 

@@ -16,8 +16,13 @@ public class Medicament implements Serializable{
 	private String libelleMedicament;
 	private String groupe;
 	private double prix;
+	private String description;
 	@OneToMany(mappedBy="medicament")
 	private List<ConsMedicament> consMedicament;
+	@OneToMany(mappedBy="medicament")
+	private List<Exemplaire> exemplaires;
+	@OneToMany(mappedBy="medicament")
+	private List<LivMedicament> livMedicament;
 	public Medicament() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -57,6 +62,24 @@ public class Medicament implements Serializable{
 	}
 	public void setConsMedicament(List<ConsMedicament> consMedicament) {
 		this.consMedicament = consMedicament;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public List<Exemplaire> getExemplaires() {
+		return exemplaires;
+	}
+	public void setExemplaires(List<Exemplaire> exemplaires) {
+		this.exemplaires = exemplaires;
+	}
+	public List<LivMedicament> getLivMedicament() {
+		return livMedicament;
+	}
+	public void setLivMedicament(List<LivMedicament> livMedicament) {
+		this.livMedicament = livMedicament;
 	}
 	
 
