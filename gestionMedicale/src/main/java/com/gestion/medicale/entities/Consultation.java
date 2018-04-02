@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Consultation implements Serializable{
@@ -30,10 +33,10 @@ public class Consultation implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="CODE_SOIGNANT")
 	private Utilisateur utilisateurSoignant;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CONS_SIGNE")
 	private Collection<Signe> signes;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CONS_MALADIE")
 	private Collection<Maladie> maladies;
 	@OneToMany(mappedBy="consultation")
@@ -117,12 +120,14 @@ public class Consultation implements Serializable{
 	public void setMaladies(Collection<Maladie> maladies) {
 		this.maladies = maladies;
 	}
+	@JsonIgnore
 	public List<ConsExamen> getConsExamens() {
 		return consExamens;
 	}
 	public void setConsExamens(List<ConsExamen> consExamens) {
 		this.consExamens = consExamens;
 	}
+	@JsonIgnore
 	public List<ConsMedicament> getConsMedicament() {
 		return consMedicament;
 	}

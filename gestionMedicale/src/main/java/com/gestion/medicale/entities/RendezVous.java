@@ -29,6 +29,9 @@ public class RendezVous implements Serializable{
 	private Utilisateur utilisateurSecretaire;
 	@OneToMany(mappedBy="rendezVous")
 	private List<Consultation> consultations;
+	@ManyToOne
+	@JoinColumn(name="code_calendrier")
+	private Calendrier calendrier;
 	public RendezVous() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -89,6 +92,12 @@ public class RendezVous implements Serializable{
 	}
 	public void setConsultations(List<Consultation> consultations) {
 		this.consultations = consultations;
+	}
+	public Calendrier getCalendrier() {
+		return calendrier;
+	}
+	public void setCalendrier(Calendrier calendrier) {
+		this.calendrier = calendrier;
 	}
 	
 

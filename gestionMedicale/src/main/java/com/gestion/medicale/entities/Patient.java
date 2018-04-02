@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @DiscriminatorValue("PA")
 public class Patient extends Utilisateur{
@@ -19,7 +21,9 @@ public class Patient extends Utilisateur{
 	private String allergie;
 	@OneToMany(mappedBy="utilisateurPatient")
 	private List<Consultation> consultations;
+	@OneToMany(mappedBy="utilisateurPatient")
 	
+	private List<RendezVous> lesRendezVous;
 	public Patient() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -84,11 +88,19 @@ public class Patient extends Utilisateur{
 	public void setAllergie(String allergie) {
 		this.allergie = allergie;
 	}
+	@JsonIgnore
 	public List<Consultation> getConsultations() {
 		return consultations;
 	}
 	public void setConsultations(List<Consultation> consultations) {
 		this.consultations = consultations;
+	}
+	@JsonIgnore
+	public List<RendezVous> getLesRendezVous() {
+		return lesRendezVous;
+	}
+	public void setLesRendezVous(List<RendezVous> lesRendezVous) {
+		this.lesRendezVous = lesRendezVous;
 	}
 	
 	

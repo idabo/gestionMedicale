@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Examen implements Serializable{
 	@Id
@@ -45,6 +47,7 @@ public class Examen implements Serializable{
 	public void setDateExamen(Date dateExamen) {
 		this.dateExamen = dateExamen;
 	}
+	@JsonIgnore
 	public List<ConsExamen> getConsExamens() {
 		return consExamens;
 	}
