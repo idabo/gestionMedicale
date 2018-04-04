@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Medicament implements Serializable{
 	@Id
@@ -57,6 +59,7 @@ public class Medicament implements Serializable{
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+	@JsonIgnore
 	public List<ConsMedicament> getConsMedicament() {
 		return consMedicament;
 	}
@@ -69,12 +72,14 @@ public class Medicament implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@JsonIgnore
 	public List<Exemplaire> getExemplaires() {
 		return exemplaires;
 	}
 	public void setExemplaires(List<Exemplaire> exemplaires) {
 		this.exemplaires = exemplaires;
 	}
+	@JsonIgnore
 	public List<LivMedicament> getLivMedicament() {
 		return livMedicament;
 	}

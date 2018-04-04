@@ -1,17 +1,13 @@
 package com.gestion.medicale.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -33,12 +29,10 @@ public class Consultation implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="CODE_SOIGNANT")
 	private Utilisateur utilisateurSoignant;
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="CONS_SIGNE")
-	private Collection<Signe> signes;
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="CONS_MALADIE")
-	private Collection<Maladie> maladies;
+	@OneToMany(mappedBy="consultation")
+	private List<ConsSigne> consSignes;
+	@OneToMany(mappedBy="consultation")
+	private List<ConsMaladie> consMaladies;
 	@OneToMany(mappedBy="consultation")
 	private List<ConsExamen> consExamens;
 	@OneToMany(mappedBy="consultation")
@@ -50,7 +44,7 @@ public class Consultation implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Consultation(Date dateCons, double tensionArterielle, double ttemperature, double poids,
+	public Consultation(Date dateCons, double tensionArterielle, double temperature, double poids,
 			String commentaireCons) {
 		super();
 		this.dateCons = dateCons;
@@ -108,17 +102,19 @@ public class Consultation implements Serializable{
 	public void setUtilisateurSoignant(Utilisateur utilisateurSoignant) {
 		this.utilisateurSoignant = utilisateurSoignant;
 	}
-	public Collection<Signe> getSignes() {
-		return signes;
+	@JsonIgnore
+	public List<ConsSigne> getConsSignes() {
+		return consSignes;
 	}
-	public void setSignes(Collection<Signe> signes) {
-		this.signes = signes;
+	public void setConsSignes(List<ConsSigne> consSignes) {
+		this.consSignes = consSignes;
 	}
-	public Collection<Maladie> getMaladies() {
-		return maladies;
+	@JsonIgnore
+	public List<ConsMaladie> getConsMaladies() {
+		return consMaladies;
 	}
-	public void setMaladies(Collection<Maladie> maladies) {
-		this.maladies = maladies;
+	public void setConsMaladies(List<ConsMaladie> consMaladies) {
+		this.consMaladies = consMaladies;
 	}
 	@JsonIgnore
 	public List<ConsExamen> getConsExamens() {

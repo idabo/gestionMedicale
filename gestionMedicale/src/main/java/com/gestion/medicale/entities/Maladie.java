@@ -1,12 +1,14 @@
 package com.gestion.medicale.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Maladie implements Serializable{
@@ -14,8 +16,8 @@ public class Maladie implements Serializable{
 	@GeneratedValue
 	private Long codeMaladie;
 	private String llibelleMaladie;
-	@ManyToMany(mappedBy = "maladies")
-	private Collection<Consultation> consultations;
+	@OneToMany(mappedBy="maladie")
+	private List<ConsMaladie> consMaladies;
 	public Maladie() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,12 +38,14 @@ public class Maladie implements Serializable{
 	public void setLlibelleMaladie(String llibelleMaladie) {
 		this.llibelleMaladie = llibelleMaladie;
 	}
-	public Collection<Consultation> getConsultations() {
-		return consultations;
+	@JsonIgnore
+	public List<ConsMaladie> getConsMaladies() {
+		return consMaladies;
 	}
-	public void setConsultations(Collection<Consultation> consultations) {
-		this.consultations = consultations;
+	public void setConsMaladies(List<ConsMaladie> consMaladies) {
+		this.consMaladies = consMaladies;
 	}
+
 	
 
 }
